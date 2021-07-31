@@ -52,6 +52,7 @@ AFRAME.registerComponent("comics-posters", {
         height: 35
       });
   
+      entityEl.setAttribute("cursor-events", {});
       entityEl.setAttribute("position", position);
       entityEl.setAttribute("material", { color: "blue" });
   
