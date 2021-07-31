@@ -21,7 +21,7 @@ AFRAME.registerComponent("cursor-events", {
       });
     },
 
-    handleMouseLeaveEvents: function () {
+    handleMouseLeaveEvents: function() {
        this.el.addEventListener("mouseleave", () => {
         const { selectedItemId } = this.data;
         if (selectedItemId) {
