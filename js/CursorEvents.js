@@ -5,7 +5,19 @@ AFRAME.registerComponent("cursor-events", {
     init: function() {
       this.handleMouseEnterEvents();
       this.handleMouseLeaveEvents();
-    },  
+    }, 
+    update: function() {
+      const fadeBackgroundEl = document.querySelector("#fadeBackground");
+      c = fadeBackgroundEl.children;
+      if (c.length > 0) {
+        var i;
+        for (i = 0; i <= c.length; i++) {
+          fadeBackgroundEl.removeChild(c[i]);
+        }
+      } else {
+        this.handleMouseClickEvents();
+      }
+    }, 
     handleMouseEnterEvents: function() {
       this.el.addEventListener("mouseenter", () => {
         const id = this.el.getAttribute("id");
