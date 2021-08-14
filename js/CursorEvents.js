@@ -6,7 +6,6 @@ AFRAME.registerComponent("cursor-events", {
       this.handleMouseEnterEvents();
       this.handleMouseLeaveEvents();
     },  
-
     handleMouseEnterEvents: function() {
       this.el.addEventListener("mouseenter", () => {
         const id = this.el.getAttribute("id");
@@ -20,7 +19,6 @@ AFRAME.registerComponent("cursor-events", {
         }
       });
     },
-
     handleMouseLeaveEvents: function() {
        this.el.addEventListener("mouseleave", () => {
         const { selectedItemId } = this.data;
@@ -33,5 +31,33 @@ AFRAME.registerComponent("cursor-events", {
         }
       });
     },
-    
+    handleMouseClickEvents: function () {
+      this.el.addEventListener("click", () => {
+        const {selectedItemId} = this.data;
+        const fadeBackgroundEl = document.querySelector("#fadeBackground");
+        const titleEl = document.querySelector("#app-title");
+        const cursorEl = document.querySelector("#camera-cursor");
+        if (selectedItemId) {
+          fadeBackgroundEl.setAttribute("visible", true);
+          fadeBackgroundEl.setAttribute("info-banner", {
+            itemId: selectedItemId,
+          });
+          titleEl.setAttribute("visible", false);
+          cursorEl.setAttribute("position", { x: 0, y: 0, z: -1 });
+          cursorEl.setAttribute("geometry", {
+            radiusInner: 0.04,
+            radiusOuter: 0.05,
+          });
+        } 
+        else {
+          fadeBackgroundEl.setAttribute("visible", false);
+          titleEl.setAttribute("visible", true);
+          cursorEl.setAttribute("position", { x: 0, y: 0, z: -3 });
+          cursorEl.setAttribute("geometry", {
+            radiusInner: 0.07,
+            radiusOuter: 0.13,
+          });
+        }
+      });
+    } 
   });
